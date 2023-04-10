@@ -1,27 +1,24 @@
 import { ref, reactive, computed } from "vue";
-
-import { User, UserState } from "@/interface/user";
-
-import userData from "@/data/users.json";
-
 import { defineStore } from "pinia";
+import { User, UserState } from "@/interface/user";
+import userData from "@/data/users.json";
+import { v4 as uuid } from "@/util/uuid";
 
 export const useUserStore = defineStore("user", () => {
-  // reactive state as UserState
   const state: UserState = reactive({
     user: null,
     userList: [],
   });
 
-  // computed state
   const user = computed(() => state.user);
   const userList = computed(() => state.userList);
 
-  // actions
-  const addUser = (user: User): User => {
-    if (!user.uuid) user.uuid = Math.random().toString(36).substr(2, 9);
-    console.log("user", user);
-    state.userList.push(user);
+  const add = (user: User): User => {
+    if (!user.uuid) user.uuid = uuid();
+    state.userList.push({
+      ...user,
+    });
+    resetUser(user);
     return user;
   };
 
@@ -34,9 +31,15 @@ export const useUserStore = defineStore("user", () => {
     state.userList = state.userList.filter((user) => user.uuid !== uuid);
   };
 
+  const resetUser = (user: User) => {
+    user.uuid = "";
+    user.name = "";
+    user.age = 0;
+  };
+
   return {
     user,
-    addUser,
+    add,
     userList,
     getUserList,
     removeUser,

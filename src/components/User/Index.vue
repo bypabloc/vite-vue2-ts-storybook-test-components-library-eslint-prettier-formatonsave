@@ -53,7 +53,6 @@ const form = reactive<User>({
 })
 
 const onClick = () => {
-  console.log('form', form)
   user.addUser(form)
 };
 

@@ -9,7 +9,7 @@ const userStore = useUserStore();
 export const useUser = () => {
   const { user, userList } = storeToRefs(userStore);
   const {
-    addUser: addUserStore,
+    add: addUserStore,
     getUserList: getUserListStore,
     removeUser: removeUserStore,
   } = userStore;
