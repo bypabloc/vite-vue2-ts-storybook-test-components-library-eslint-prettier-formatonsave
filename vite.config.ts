@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue2'
-import { resolve as pathResolve } from 'path'
+import { resolve as pathResolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,8 +12,8 @@ export default defineConfig({
     alias: [
       {
         find: /^@\/(.+)/,
-        replacement: pathResolve(pathResolve(__dirname), 'src') + '/$1'
-      }
-    ]
-  }
-})
+        replacement: pathResolve(pathResolve(__dirname), "src") + "/$1",
+      },
+    ],
+  },
+});

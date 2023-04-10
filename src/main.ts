@@ -1,12 +1,9 @@
-import Vue from 'vue';
-import { createPinia, PiniaVuePlugin } from "pinia";
+import Vue from "vue";
 import "./style.css";
+import store from "./store";
 import App from "./App.vue";
 
-Vue.use(PiniaVuePlugin);
-const pinia = createPinia();
-
 new Vue({
+  pinia: store,
   render: (h) => h(App),
-  pinia,
 }).$mount("#app");
