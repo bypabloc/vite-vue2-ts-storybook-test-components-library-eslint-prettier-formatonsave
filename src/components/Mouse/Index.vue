@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div>
-      <h1>User Component</h1>
+    <div class="flex-center-horizontal">
+      <h1>Mouse Component</h1>
     </div>
     <div>
       <h2>Mouse Position</h2>
@@ -19,3 +19,5 @@ const mouse = useMouse()
 const onClick = () => {
 };
 </script>
+
+<style lang="sass" scoped src="./styles.sass"/>

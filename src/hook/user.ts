@@ -8,14 +8,22 @@ const userStore = useUserStore();
 
 export const useUser = () => {
   const { user, userList } = storeToRefs(userStore);
-  const { setUser: setUserStore, getUserList: getUserListStore } = userStore;
+  const {
+    addUser: addUserStore,
+    getUserList: getUserListStore,
+    removeUser: removeUserStore,
+  } = userStore;
 
-  const setUser = (user: User): User => {
-    return setUserStore(user);
+  const addUser = (user: User): User => {
+    return addUserStore(user);
   };
 
   const getUserList = async (): Promise<User[]> => {
     return await getUserListStore();
+  };
+
+  const removeUser = (uuid: User["uuid"]): void => {
+    removeUserStore(uuid);
   };
 
   onMounted(async () => {
@@ -24,8 +32,9 @@ export const useUser = () => {
 
   return {
     user,
-    setUser,
+    addUser,
     userList,
     getUserList,
+    removeUser,
   };
 };

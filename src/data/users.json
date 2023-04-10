@@ -1,22 +1,19 @@
 {
     "userList": [
         {
-            "id": 1,
+            "uuid": "1",
             "name": "John",
-            "age": 30,
-            "address": "New York"
+            "age": 30
         },
         {
-            "id": 2,
+            "uuid": "2",
             "name": "Smith",
-            "age": 40,
-            "address": "California"
+            "age": 40
         },
         {
-            "id": 3,
+            "uuid": "3",
             "name": "Peter",
-            "age": 50,
-            "address": "Texas"
+            "age": 50
         }
     ],
     "userMocks": [
