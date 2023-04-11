@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import eslintPlugin from 'vite-plugin-eslint'
+// import eslintPlugin from 'vite-plugin-eslint'
 import vue from '@vitejs/plugin-vue2'
 import { resolve as pathResolve } from 'path'
 
@@ -8,7 +8,10 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  plugins: [vue(), eslintPlugin()],
+  plugins: [
+    vue(),
+    // eslintPlugin(),
+  ],
   resolve: {
     alias: [
       {
