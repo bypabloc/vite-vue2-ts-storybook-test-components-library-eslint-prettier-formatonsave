@@ -1,21 +1,5 @@
 {
-  "userList": [
-    {
-      "uuid": "1",
-      "name": "John",
-      "age": 30
-    },
-    {
-      "uuid": "2",
-      "name": "Smith",
-      "age": 40
-    },
-    {
-      "uuid": "3",
-      "name": "Peter",
-      "age": 50
-    }
-  ],
+  "userList": [],
   "userMocks": [
     {
       "id": 1,

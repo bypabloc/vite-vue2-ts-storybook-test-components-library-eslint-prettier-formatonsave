@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 // import eslintPlugin from 'vite-plugin-eslint'
 import { resolve as pathResolve } from 'path'
+import { configDefaults } from 'vitest/config'
 import vue from '@vitejs/plugin-vue2'
 
 // https://vitejs.dev/config/
@@ -21,11 +22,21 @@ export default defineConfig({
     port: 3000,
   },
   test: {
-    // simulate DOM with happy-dom
-    // (requires installing happy-dom as a peer dependency)
     environment: 'happy-dom',
-
-    // enable jest-like global test APIs
     globals: true,
+    exclude: [
+      ...configDefaults.exclude,
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/lib/**',
+      '**/public/**',
+      '**/.{idea,git,cache,output,temp}/**',
+      '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*',
+    ],
+    include: [
+      ...configDefaults.include,
+      './src/**/*.{spec,test}.{js,jsx,ts,tsx,vue}',
+    ],
   },
 })

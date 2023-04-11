@@ -18,6 +18,9 @@ export const useUserStore = defineStore('user', () => {
     state.userList.push({
       ...user,
     })
+    state.user = {
+      ...user,
+    }
     resetUser(user)
     return user
   }

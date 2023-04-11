@@ -8,14 +8,14 @@
         <h2>Formulario</h2>
         <div>
           <label for="name">Nombre: </label>
-          <input v-model="form.name" name="name" type="text" />
+          <input v-model="form.name" data-testid="name" name="name" type="text" />
         </div>
         <div>
           <label for="age">Edad: </label>
-          <input v-model="form.age" name="age" type="number" />
+          <input v-model="form.age" data-testid="age" name="age" type="number" />
         </div>
         <div>
-          <button type="button" @click="onClick">Guardar</button>
+          <button data-testid="button" name="button" type="button" @click="onClick">Guardar</button>
         </div>
       </div>
       <div>
