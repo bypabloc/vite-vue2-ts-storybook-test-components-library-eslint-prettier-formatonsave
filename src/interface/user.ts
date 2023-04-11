@@ -1,10 +1,10 @@
 export interface User {
-  uuid?: string;
-  name: string;
-  age: number;
+  uuid?: string
+  name: string
+  age: number
 }
 
 export interface UserState {
-  user: User | null;
-  userList: User[];
+  user: User | null
+  userList: User[]
 }

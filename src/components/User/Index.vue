@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -58,7 +58,7 @@ const removeUser = (uuid: User['uuid']) => {
   user.removeUser(uuid)
 }
 const v4 = (): string => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+  return 'xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     const r = (Math.random() * 16) | 0,
       v = c === 'x' ? r : (r & 0x3) | 0x8
     return v.toString(16)
