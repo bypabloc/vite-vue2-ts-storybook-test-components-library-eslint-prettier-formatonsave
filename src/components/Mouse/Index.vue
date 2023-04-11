@@ -11,6 +11,13 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'MouseComponent',
+})
+</script>
+
 <script lang="ts" setup>
 import { useMouse } from '@/hook/mouse'
 
