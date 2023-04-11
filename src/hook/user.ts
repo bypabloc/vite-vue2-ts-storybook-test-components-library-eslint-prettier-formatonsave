@@ -1,40 +1,40 @@
-import { onMounted } from "vue";
+import { onMounted } from 'vue'
 
-import { User } from "@/interface/user.ts";
-import { useUserStore } from "@/store/modules/user";
-import { storeToRefs } from "pinia";
+import { User } from '@/interface/user.ts'
+import { useUserStore } from '@/store/modules/user'
+import { storeToRefs } from 'pinia'
 
-const userStore = useUserStore();
+const userStore = useUserStore()
 
 export const useUser = () => {
-  const { user, userList } = storeToRefs(userStore);
+  const { user, userList } = storeToRefs(userStore)
   const {
     add: addUserStore,
     getUserList: getUserListStore,
     removeUser: removeUserStore,
-  } = userStore;
+  } = userStore
 
   const addUser = (user: User): User => {
-    return addUserStore(user);
-  };
+    return addUserStore(user)
+  }
 
   const getUserList = async (): Promise<User[]> => {
-    return await getUserListStore();
-  };
+    return await getUserListStore()
+  }
 
-  const removeUser = (uuid: User["uuid"]): void => {
-    removeUserStore(uuid);
-  };
+  const removeUser = (uuid: User['uuid']): void => {
+    removeUserStore(uuid)
+  }
 
   onMounted(async () => {
-    await getUserList();
-  });
+    await getUserList()
+  })
 
   return {
-    user,
     addUser,
-    userList,
     getUserList,
     removeUser,
-  };
-};
+    user,
+    userList,
+  }
+}

@@ -8,6 +8,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix src",
+    "lintfix": "prettier --write --list-different . && npm run lint -- --fix",
     "format": "prettier .  --write",
     "npm:clean": "npm cache clean --force && rm -rf node_modules && rm -f package-lock.json",
     "npm:reinstall": "rm -rf node_modules && rm -rf dist && rm -f package-lock.json && npm cache clean --force && npm install"

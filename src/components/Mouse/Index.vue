@@ -12,12 +12,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useMouse } from "@/hook/mouse";
+import { useMouse } from '@/hook/mouse'
 
 const mouse = useMouse()
 
-const onClick = () => {
-};
+const onClick = () => {}
 </script>
 
-<style lang="sass" scoped src="./styles.sass"/>
+<style lang="sass" scoped src="./styles.sass" />
