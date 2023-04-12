@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
-// import eslintPlugin from 'vite-plugin-eslint'
 import { resolve as pathResolve } from 'path'
+
+// import eslintPlugin from 'vite-plugin-eslint'
 import { configDefaults } from 'vitest/config'
 import vue from '@vitejs/plugin-vue2'
 
@@ -38,5 +39,31 @@ export default defineConfig({
       ...configDefaults.include,
       './src/**/*.{spec,test}.{js,jsx,ts,tsx,vue}',
     ],
+  },
+
+  build: {
+    // Output compiled files to /dist.
+    cssCodeSplit: true,
+    outDir: './lib',
+    lib: {
+      // Could also be a dictionary or array of multiple entry points
+      entry: pathResolve(__dirname, 'src/rollup.ts'),
+      name: 'MyLib',
+      // the proper extensions will be added
+      fileName: 'my-lib',
+      formats: ['es', 'cjs', 'umd'],
+    },
+    rollupOptions: {
+      // make sure to externalize deps that shouldn't be bundled
+      // into your library
+      external: ['vue'],
+      output: {
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          vue: 'Vue',
+        },
+      },
+    },
   },
 })

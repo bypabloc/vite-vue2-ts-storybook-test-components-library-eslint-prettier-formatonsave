@@ -7,6 +7,7 @@ import { useUserStore } from '@/store/modules/user'
 
 // https://v1.test-utils.vuejs.org/
 // https://pinia.vuejs.org/cookbook/testing.html
+// https://vitest.dev/guide/snapshot.html
 
 describe('Foo', () => {
   beforeEach(() => {
