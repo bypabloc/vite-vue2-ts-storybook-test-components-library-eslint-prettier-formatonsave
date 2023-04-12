@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode default",
     "preview": "vite preview",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc && vite build --mode production",
+    "build:library": "vue-tsc && vite build --mode library",
     "build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix src",
     "lintfix": "prettier --write --list-different . && npm run lint -- --fix",
