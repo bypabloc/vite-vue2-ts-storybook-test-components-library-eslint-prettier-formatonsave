@@ -87,10 +87,10 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         outDir: './lib',
         lib: {
           // Could also be a dictionary or array of multiple entry points
-          entry: pathResolve(__dirname, 'src/rollup.ts'),
+          entry: pathResolve(__dirname, 'src/library.ts'),
           name: 'MyLib',
           // the proper extensions will be added
-          fileName: 'my-lib',
+          fileName: 'index',
           formats: ['es', 'cjs', 'umd'],
         },
         rollupOptions: {
