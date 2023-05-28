@@ -1,10 +1,11 @@
 <template>
   <div>
-    <UserComponent />
+    <TitleComponent>
+      Texto prueba
+    </TitleComponent>
   </div>
 </template>
 
 <script setup lang="ts">
-import MouseComponent from '@/components/Mouse/Index.vue'
-import UserComponent from '@/components/User/Index.vue'
+import TitleComponent from '@/components/Title/Index.vue'
 </script>

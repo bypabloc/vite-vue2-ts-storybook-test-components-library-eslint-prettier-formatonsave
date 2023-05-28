@@ -1,13 +1,11 @@
 import { onMounted } from 'vue'
 
 import { User } from '@/interface/user.ts'
-import { useUserStore } from '@/store/modules/user'
-import { storeToRefs } from 'pinia'
-
-const userStore = useUserStore()
+import { useUserStore } from '@/util/userStore.ts'
 
 export const useUser = () => {
-  const { user, userList } = storeToRefs(userStore)
+  const userStore = useUserStore()
+  const { user, userList } = userStore
   const {
     add: addUserStore,
     getUserList: getUserListStore,

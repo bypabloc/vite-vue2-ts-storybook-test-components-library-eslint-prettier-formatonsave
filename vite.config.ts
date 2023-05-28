@@ -82,6 +82,9 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         ],
       },
       build: {
+        commonjsOptions: {
+          esmExternals: true,
+        },
         // Output compiled files to /dist.
         cssCodeSplit: true,
         outDir: './lib',

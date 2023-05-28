@@ -20,7 +20,19 @@ export default {
 // More on writing stories with args: https://storybook.js.org/docs/7.0/vue/writing-stories/args
 export const Primary = {
   args: {
+    primary: false,
+    label: 'Button',
+  },
+}
+export const Secondary = {
+  args: {
     primary: true,
     label: 'Button',
+  },
+}
+export const Third = {
+  args: {
+    primary: false,
+    label: 'Third button',
   },
 }

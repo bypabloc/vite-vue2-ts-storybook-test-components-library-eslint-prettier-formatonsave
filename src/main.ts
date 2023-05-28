@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './style.css'
+import './assets/colors.scss'
 import store from './store'
 import App from './App.vue'
 

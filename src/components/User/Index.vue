@@ -57,13 +57,6 @@ const onClick = () => {
 const removeUser = (uuid: User['uuid']) => {
   user.removeUser(uuid)
 }
-const v4 = (): string => {
-  return 'xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (Math.random() * 16) | 0,
-      v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}
 </script>
 
 <style lang="sass" scoped src="./styles.sass" />

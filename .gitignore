@@ -31,3 +31,5 @@ lib
 .env.test
 .env.production
 .env.staging
+
+storybook-static
