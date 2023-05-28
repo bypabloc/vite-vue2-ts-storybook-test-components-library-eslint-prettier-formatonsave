@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import { createPinia, PiniaVuePlugin, setActivePinia } from 'pinia'
 
+import './assets/colors.scss'
+import './assets/heading/typographies.scss'
+
+
 Vue.use(PiniaVuePlugin)
 const store = createPinia()
 setActivePinia(store)
