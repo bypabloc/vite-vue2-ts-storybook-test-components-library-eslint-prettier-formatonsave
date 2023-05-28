@@ -1,0 +1,58 @@
+{
+  "root": true,
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "globalReturn": false,
+      "impliedStrict": false,
+      "jsx": false
+    }
+  },
+  "extends": [
+    "plugin:vue/strongly-recommended",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "eslint-plugin-sort-keys-fix"],
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "sort-keys-fix/sort-keys-fix": "off"
+      }
+    }
+  ],
+  "rules": {
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never",
+        "imports": "always-multiline",
+        "objects": "always-multiline"
+      }
+    ],
+    "eqeqeq": ["error", "always"],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-unused-vars": "warn",
+    "sort-imports": [
+      "none"
+    ],
+    "sort-keys-fix/sort-keys-fix": "error",
+    "vue/attributes-order": [
+      "error",
+      {
+        "alphabetical": true
+      }
+    ],
+    "vue/component-name-in-template-casing": ["error", "PascalCase"],
+    "vue/order-in-components": "warn",
+    "vue/sort-keys": ["warn", "asc"]
+  }
+}
