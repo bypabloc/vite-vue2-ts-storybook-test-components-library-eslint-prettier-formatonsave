@@ -15,14 +15,14 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Title',
+  name: 'SubTitle',
 })
 </script>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
 import Colors from '@/types/colors'
 import FontStyle from '@/types/fontStyle'
-import { computed } from 'vue'
 
 interface Options {
   [key: string]: string
@@ -31,19 +31,19 @@ interface Options {
 const props = withDefaults(defineProps<{
   color?: Colors,
   fontStyle?: FontStyle,
-  type?: 'hero' | 'title-1' | 'title-2'
+  type?: 'subtitle-1' | 'subtitle-2' | 'subtitle-3'
 }>(), {
   color: 'destacame',
   fontStyle: 'regular',
-  type: 'hero',
+  type: 'subtitle-1',
 })
 
 
 const component = computed(() => {
   const options: Options = {
-    hero: 'h2',
-    'title-1': 'h3',
-    'title-2': 'h4',
+    'subtitle-1': 'h5',
+    'subtitle-2': 'h6',
+    'subtitle-3': 'h7',
   }
   return options[props.type]
 })
