@@ -1,6 +1,5 @@
 <template>
-  <component
-    :is="component"
+  <p
     :class="[
       `${props.color}--text`,
       `text--${props.fontStyle}`,
@@ -8,43 +7,28 @@
     ]"
   >
     <slot> </slot>
-  </component>
+  </p>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Title',
+  name: 'Paragraph',
 })
 </script>
 
 <script lang="ts" setup>
 import Colors from '@/types/colors'
 import FontStyle from '@/types/fontStyle'
-import { computed } from 'vue'
-
-interface Options {
-  [key: string]: string
-}
 
 const props = withDefaults(defineProps<{
   color?: Colors,
   fontStyle?: FontStyle,
-  type?: 'hero' | 'title-1' | 'title-2'
+  type?: 'body' | 'caption' | 'button',
 }>(), {
   color: 'destacame',
   fontStyle: 'regular',
-  type: 'hero',
-})
-
-
-const component = computed(() => {
-  const options: Options = {
-    hero: 'h2',
-    'title-1': 'h3',
-    'title-2': 'h4',
-  }
-  return options[props.type]
+  type: 'body',
 })
 </script>
