@@ -1,6 +1,8 @@
 <template>
   <component :is="component"  :class="`text--${props.type}`">
     <slot> </slot>
+    $attrs {{ $attrs }}
+    computedClass {{ computedClass }}
   </component>
 </template>
 
@@ -9,11 +11,12 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Title',
+  inheritAttrs: false,
 })
 </script>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 
 interface Props {
   type: 'hero' | 'title-1' | 'title-2'
@@ -38,4 +41,10 @@ const component = computed(() => {
   }
   return options[props.type]
 })
+
+const attrs = useAttrs()
+const computedClass = computed(() => {
+  window.console.log('attrs', attrs)
+})
+
 </script>

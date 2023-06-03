@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TitleComponent type="title-1">
+    <TitleComponent type="title-1" class="text--primary btn large">
       Texto prueba
     </TitleComponent>
   </div>
