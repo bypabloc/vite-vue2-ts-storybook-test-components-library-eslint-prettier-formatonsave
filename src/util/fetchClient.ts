@@ -18,6 +18,11 @@ type FetchClientRequest = {
   options?: RequestInit,
 }
 
+type FetchClientResponse = {
+  data: Response,
+  fetching: Boolean,
+}
+
 class FetchClient {
   private baseUrls: { [key: string]: string };
   private baseUrlId: string;
@@ -78,34 +83,39 @@ class FetchClient {
 
     const requestKey = `${url}${JSON.stringify(options)}`;
 
+    const response: FetchClientResponse = {
+      data: Response,
+      fetching: false,
+    };
+
     // Cache lookup
     if (this.cacheLifetime) {
       try {
         const cached = await this.getCachedRequest(requestKey);
         if (cached) {
-          let { data: response, timestamp } = cached;
+          let { data, timestamp } = cached;
           if (Date.now() - timestamp < this.cacheLifetime) {
 
-            response = await responseHandler(response);
-        
+            data = await responseHandler(data);
+
             this.responseInterceptors.forEach((interceptor) => {
-              response = interceptor(response);
+              data = interceptor(data);
             });
-            return response;
+            response.data = data;
           }
         }
       } catch (e) {
         // Fall back to localStorage if IndexedDB is not available
         const cached = localStorage.getItem(requestKey);
         if (cached) {
-          let { data: response, timestamp } = JSON.parse(cached);
+          let { data, timestamp } = JSON.parse(cached);
           if (Date.now() - timestamp < this.cacheLifetime) {
-            response = await responseHandler(response);
+            data = await responseHandler(data);
         
             this.responseInterceptors.forEach((interceptor) => {
-              response = interceptor(response);
+              data = interceptor(data);
             });
-            return response;
+            response.data = data;
           }
         }
       }
@@ -118,10 +128,39 @@ class FetchClient {
     if (this.timeout) {
       setTimeout(() => controller.abort(), this.timeout);
     }
-    
-    let response: Response;
+
+    if (response.data) {
+      response.fetching = true;
+      fetch(request, {
+        ...options,
+        headers: this.headers,
+        signal: controller.signal,
+      }).then(
+        async (resp) => {
+          if (!resp.ok) {
+            throw new Error(`Request failed with status ${resp.status}`);
+          }
+          response.data = await responseHandler(resp);
+          this.responseInterceptors.forEach((interceptor) => {
+            response.data = interceptor(response.data);
+          });
+          return response;
+        }
+      ).catch((e: any) => {
+        if (e.name === 'AbortError') {
+          throw new Error('Request timed out');
+        }
+        if (e.name === 'TypeError' && e.message.includes('Failed to fetch')) {
+          throw new Error('CORS Error: Failed to fetch');
+        }
+        throw e;
+      });
+      return response;
+    }
+
+    response.fetching = true;
     try {
-      response = await fetch(request, {
+      response.data = await fetch(request, {
         ...options,
         headers: this.headers,
         signal: controller.signal,
@@ -134,15 +173,17 @@ class FetchClient {
         throw new Error('CORS Error: Failed to fetch');
       }
       throw e;
+    } finally {
+      response.fetching = false;
     }
 
     clearTimeout(id);
   
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
+    if (!response.data.ok) {
+      throw new Error(`Request failed with status ${response.data.status}`);
     }
 
-    response = await responseHandler(response);
+    response.data = await responseHandler(response.data);
 
     // Cache store
     if (this.cacheLifetime) {
@@ -155,7 +196,7 @@ class FetchClient {
     }
 
     this.responseInterceptors.forEach((interceptor) => {
-      response = interceptor(response);
+      response.data = interceptor(response.data);
     });
 
     return response;
